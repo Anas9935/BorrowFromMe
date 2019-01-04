@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.anasamin.borrowfromme.data.object;
@@ -20,7 +22,8 @@ public class History extends AppCompatActivity {
     }
     void display(){
         String[] projections={object.column.Column_ID, object.column.FROM, object.column.TO, object.column.AMOUNT, object.column.TIME, object.column.STATUS,object.column.TIMEPAID};
-        Cursor cursor=getContentResolver().query(object.column.CONTENT_URI,projections,null,null,null);
+        String sortOrder=object.column.TIME+" DESC";
+        Cursor cursor=getContentResolver().query(object.column.CONTENT_URI,projections,null,null,sortOrder);
         ListView lv=(ListView)findViewById(R.id.lv2XML);
         madapter=new HistoryCursorAdapter(this,cursor);
         lv.setAdapter(madapter);
@@ -49,4 +52,5 @@ public class History extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
