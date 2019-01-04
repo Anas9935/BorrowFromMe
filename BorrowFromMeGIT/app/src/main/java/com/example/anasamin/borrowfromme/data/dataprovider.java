@@ -97,6 +97,13 @@ public class dataprovider extends ContentProvider {
                 getContext().getContentResolver().notifyChange(uri,null);
                return db.delete(object.column.TABLE_NAME,selection,selectionArgs);
             }
+            case OBJ_ID:{
+                SQLiteDatabase db=help.getWritableDatabase();
+                selection=object.column.Column_ID+"=?";
+                selectionArgs=new String[]{String.valueOf(ContentUris.parseId(uri))};
+                getContext().getContentResolver().notifyChange(uri,null);
+                return db.delete(object.column.TABLE_NAME,selection,selectionArgs);
+            }
             default:{
                 throw new IllegalArgumentException("matformd uri in delete");
             }
@@ -109,6 +116,7 @@ public class dataprovider extends ContentProvider {
         SQLiteDatabase db=help.getWritableDatabase();
         switch(match){
             case OBJ:{
+                getContext().getContentResolver().notifyChange(uri,null);
                 int id=db.update(object.column.TABLE_NAME,values,selection,selectionArgs);
                 if(id==-1){
                     Log.d(LOG_TAG, "update: Not Possible");
