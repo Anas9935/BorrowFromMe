@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:layout_height="match_parent">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:text="Payment Details:-"
+            android:textStyle="bold"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/cross"
+            android:id="@+id/crossXML"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -9,6 +39,7 @@
         >
         <TextView
             android:id="@+id/rl1"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Borrowed by - "
@@ -21,16 +52,9 @@
             android:text="ANAS AMIN "
             android:layout_toRightOf="@id/rl1"
             android:textAllCaps="true"
+            android:textSize="16sp"
             />
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/cross"
-            android:id="@+id/crossXML"
-            android:layout_marginRight="20dp"
 
-            />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -40,6 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:text="Borrowed From -  "
             />
@@ -48,6 +73,7 @@
             android:layout_height="wrap_content"
             android:text="Yasir Khan"
             android:textAllCaps="true"
+            android:textSize="16sp"
             android:maxLines="1"
             android:id="@+id/Borrowed_FromXML2"
             />
@@ -59,6 +85,7 @@
         <TextView
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
+            android:textSize="16sp"
             android:layout_height="wrap_content"
             android:text="Amount - "
             android:textStyle="bold"
@@ -68,6 +95,7 @@
             android:layout_toRightOf="@id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text=" 5000"
             />
         <TextView
@@ -75,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" ₹"
+            android:textSize="16sp"
             android:textStyle="bold"
             />
         <TextView
@@ -82,12 +111,14 @@
             android:layout_height="wrap_content"
             android:text=" Status - "
             android:textStyle="bold"
+            android:textSize="16sp"
             android:layout_toLeftOf="@id/paid"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" PAY"
+            android:textSize="16sp"
             android:id="@+id/paid"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="10dp"
@@ -99,6 +130,8 @@
         >
         <TextView
             android:id="@+id/text_time2"
+            android:textSize="16sp"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date of borrowing - "
@@ -109,6 +142,7 @@
             android:layout_height="wrap_content"
             android:text="10AM : Sunday"
             android:id="@+id/timeXML2"
+            android:textSize="16sp"
             android:layout_toRightOf="@id/text_time2"
             />
     </RelativeLayout>
@@ -118,6 +152,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="Date of payment - "
             android:textStyle="bold"
             />
@@ -125,11 +160,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10AM : Sunday"
+            android:textSize="16sp"
             android:id="@+id/timePaidXML2"
             android:layout_toRightOf="@id/text_time"
             />
 
     </LinearLayout>
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="15dp"
+    />
 
 </LinearLayout>

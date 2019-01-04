@@ -1,13 +1,16 @@
 package com.example.anasamin.borrowfromme;
 
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +20,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class detail_fragment extends Fragment {
+    Cursor cursor;
+    FragmentManager fm2;
+    Fragment frag;
+    FrameLayout frame;
     public detail_fragment(){}
 
     @Nullable
@@ -32,40 +39,41 @@ public class detail_fragment extends Fragment {
         TextView time_paid=(TextView)root.findViewById(R.id.timePaidXML2);
         ImageView cross=(ImageView)root.findViewById(R.id.crossXML);
 
-//        int statusindex=cursor.getColumnIndex(object.column.STATUS);
-//        int namebbyindex=cursor.getColumnIndex(object.column.TO);
-//        int namebfmindex=cursor.getColumnIndex(object.column.FROM);
-//        int amt=cursor.getColumnIndex(object.column.AMOUNT);
-//        int tme=cursor.getColumnIndex(object.column.TIME);
-//        int tmePaidindex=cursor.getColumnIndex(object.column.TIMEPAID);
-//
-//        int status=cursor.getInt(statusindex);
-//        borr_by.setText(cursor.getString(namebbyindex));
-//        borr_from.setText(cursor.getString(namebfmindex));
-//        amount.setText(String.valueOf(cursor.getInt(amt)));
-//        time.setText(getTime(cursor.getInt(tme)));
-//
-//        if(cursor.getInt(tmePaidindex)==0){
-//            time_paid.setText("NOT YET PAID");
-//        }
-//        else{
-//            time_paid.setText(getTime(cursor.getInt(tmePaidindex)));
-//        }
-//
-//        switch(status){
-//            case 0:{paidBTN.setText("UNPAID");
-//                paidBTN.setTextColor(Color.parseColor("#CC2200"));
-//                break;
-//            }
-//            case 1:{paidBTN.setText("PAID");
-//                paidBTN.setTextColor(Color.parseColor("#000000"));
-//                break;
-//            }
-//        }
+        int statusindex=cursor.getColumnIndex(object.column.STATUS);
+        int namebbyindex=cursor.getColumnIndex(object.column.TO);
+        int namebfmindex=cursor.getColumnIndex(object.column.FROM);
+        int amt=cursor.getColumnIndex(object.column.AMOUNT);
+        int tme=cursor.getColumnIndex(object.column.TIME);
+        int tmePaidindex=cursor.getColumnIndex(object.column.TIMEPAID);
+
+        int status=cursor.getInt(statusindex);
+        borr_by.setText(cursor.getString(namebbyindex));
+        borr_from.setText(cursor.getString(namebfmindex));
+        amount.setText(String.valueOf(cursor.getInt(amt)));
+        time.setText(getTime(cursor.getInt(tme)));
+
+        if(cursor.getInt(tmePaidindex)==0){
+            time_paid.setText("NOT YET PAID");
+        }
+        else{
+            time_paid.setText(getTime(cursor.getInt(tmePaidindex)));
+        }
+
+        switch(status){
+            case 0:{paidBTN.setText("UNPAID");
+                paidBTN.setTextColor(Color.parseColor("#CC2200"));
+                break;
+            }
+            case 1:{paidBTN.setText("PAID");
+                paidBTN.setTextColor(Color.parseColor("#000000"));
+                break;
+            }
+        }
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                    fm2.beginTransaction().remove(frag).commit();
+                    frame.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -75,4 +83,15 @@ return root;
         Date d=new Date(unix*1000L);
         return new SimpleDateFormat("dd/MMM/yyyy").format(d);
     }
+    public void setCursor(Cursor c){
+        this.cursor=c;
+    }
+    public void getFm(FragmentManager fm,Fragment fragment){
+        this.fm2=fm;
+        this.frag=fragment;
+    }
+    public void setfl(FrameLayout fl){
+        this.frame=fl;
+    }
+
     }

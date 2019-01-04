@@ -36,13 +36,14 @@ public class History extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 detail_fragment frag=new detail_fragment();
                 FrameLayout fl=(FrameLayout)findViewById(R.id.detailed_rootxml);
                 fl.setVisibility(View.VISIBLE);
+                frag.setCursor(madapter.getCursor());
                 FragmentManager fm=getSupportFragmentManager();
                 fm.beginTransaction().add(R.id.detailed_rootxml,frag).commit();
-
+                frag.getFm(fm,frag);
+                frag.setfl(fl);
             }
         });
     }
