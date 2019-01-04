@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/rl1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Borrowed by - "
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/BorrowerXML2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANAS AMIN "
+            android:layout_toRightOf="@id/rl1"
+            android:textAllCaps="true"
+            />
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/cross"
+            android:id="@+id/crossXML"
+            android:layout_marginRight="20dp"
+
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Borrowed From -  "
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yasir Khan"
+            android:textAllCaps="true"
+            android:maxLines="1"
+            android:id="@+id/Borrowed_FromXML2"
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount - "
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/amountXML2"
+            android:layout_toRightOf="@id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 5000"
+            />
+        <TextView
+            android:layout_toRightOf="@id/amountXML2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ₹"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Status - "
+            android:textStyle="bold"
+            android:layout_toLeftOf="@id/paid"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" PAY"
+            android:id="@+id/paid"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/text_time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of borrowing - "
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10AM : Sunday"
+            android:id="@+id/timeXML2"
+            android:layout_toRightOf="@id/text_time2"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of payment - "
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10AM : Sunday"
+            android:id="@+id/timePaidXML2"
+            android:layout_toRightOf="@id/text_time"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,12 +1,14 @@
 package com.example.anasamin.borrowfromme;
 
 import android.database.Cursor;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.example.anasamin.borrowfromme.data.object;
@@ -19,6 +21,8 @@ public class History extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         display();
+
+
     }
     void display(){
         String[] projections={object.column.Column_ID, object.column.FROM, object.column.TO, object.column.AMOUNT, object.column.TIME, object.column.STATUS,object.column.TIMEPAID};
@@ -28,6 +32,19 @@ public class History extends AppCompatActivity {
         madapter=new HistoryCursorAdapter(this,cursor);
         lv.setAdapter(madapter);
         madapter.notifyDataSetChanged();
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                detail_fragment frag=new detail_fragment();
+                FrameLayout fl=(FrameLayout)findViewById(R.id.detailed_rootxml);
+                fl.setVisibility(View.VISIBLE);
+                FragmentManager fm=getSupportFragmentManager();
+                fm.beginTransaction().add(R.id.detailed_rootxml,frag).commit();
+
+            }
+        });
     }
 
     @Override

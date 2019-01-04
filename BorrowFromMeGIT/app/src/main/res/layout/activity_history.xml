@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_marginRight="16dp"
-    android:layout_marginLeft="16dp"
-    android:id="@+id/lv2XML"
     android:layout_height="match_parent"
-    tools:context=".History">
+    >
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/lv2XML"
+        android:layout_height="match_parent"
+        tools:context=".History">
 
-</ListView>
+    </ListView>
+    <FrameLayout
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:id="@+id/detailed_rootxml"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:background="@drawable/shape"
+        android:elevation="10dp"
+        android:visibility="invisible"
+        >
+    </FrameLayout>
+</FrameLayout>
