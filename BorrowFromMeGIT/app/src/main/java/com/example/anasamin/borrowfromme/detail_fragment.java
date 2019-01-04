@@ -24,6 +24,7 @@ public class detail_fragment extends Fragment {
     FragmentManager fm2;
     Fragment frag;
     FrameLayout frame;
+    TextView date;
     public detail_fragment(){}
 
     @Nullable
@@ -38,6 +39,7 @@ public class detail_fragment extends Fragment {
         TextView paidBTN=(TextView)root.findViewById(R.id.paid);
         TextView time_paid=(TextView)root.findViewById(R.id.timePaidXML2);
         ImageView cross=(ImageView)root.findViewById(R.id.crossXML);
+        date=(TextView)root.findViewById(R.id.datepay);
 
         int statusindex=cursor.getColumnIndex(object.column.STATUS);
         int namebbyindex=cursor.getColumnIndex(object.column.TO);
@@ -52,11 +54,12 @@ public class detail_fragment extends Fragment {
         amount.setText(String.valueOf(cursor.getInt(amt)));
         time.setText(getTime(cursor.getInt(tme)));
 
-        if(cursor.getInt(tmePaidindex)==0){
-            time_paid.setText("NOT YET PAID");
+        if(cursor.getInt(tmePaidindex)!=0){
+            time_paid.setText(getTime(cursor.getInt(tmePaidindex)));
         }
         else{
-            time_paid.setText(getTime(cursor.getInt(tmePaidindex)));
+            time_paid.setText("");
+            date.setText("");
         }
 
         switch(status){

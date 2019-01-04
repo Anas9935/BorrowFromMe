@@ -1,23 +1,44 @@
 package com.example.anasamin.borrowfromme;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.anasamin.borrowfromme.data.object;
 
 public class Main2Activity extends AppCompatActivity {
-
+    EditText frm;
+  //  TextView to;
+    EditText amt;
+    String borrowto;
+    TextView borrow;
+    String name;
+    int opt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        Intent intent=getIntent();
+         name=intent.getStringExtra("NAME");
+         opt=intent.getIntExtra("OPTION",0);
+
+        borrow=(TextView)findViewById(R.id.text1);
+        if(opt==1){
+            borrow.setText(getString(R.string.from));
+        }
+        else if(opt==2){
+            borrow.setText(getString(R.string.to));
+        }
+
     }
 
     @Override
@@ -26,18 +47,25 @@ public class Main2Activity extends AppCompatActivity {
         return true;
     }
 public void saveindatabase(){
-    TextView frm=(TextView)findViewById(R.id.edit1);
-    TextView to=(TextView)findViewById(R.id.edit2);
-    TextView amt=(TextView)findViewById(R.id.amount);
+
+    frm=(EditText)findViewById(R.id.edit1);
+  //  to=(TextView)findViewById(R.id.edit2);
+    amt=(EditText)findViewById(R.id.amount);
     int amot=Integer.parseInt(amt.getText().toString());
-   // int time=1546498319;
     int status=0;
     int time_paid=0;
     Long tsLong = System.currentTimeMillis()/1000L;
     long time=tsLong;
     ContentValues values=new ContentValues();
-    values.put(object.column.FROM,frm.getText().toString().trim());
-    values.put(object.column.TO,to.getText().toString().trim());
+    if(opt==1){
+        values.put(object.column.FROM,frm.getText().toString().trim());
+        values.put(object.column.TO,name);
+    }
+    else if(opt==2){
+        values.put(object.column.FROM,name);
+        values.put(object.column.TO,frm.getText().toString().trim());
+    }
+
     values.put(object.column.AMOUNT,amot);
     values.put(object.column.TIME,time);
     values.put(object.column.STATUS,status);
