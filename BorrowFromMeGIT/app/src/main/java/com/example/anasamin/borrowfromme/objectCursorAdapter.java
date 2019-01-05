@@ -55,6 +55,10 @@ public class objectCursorAdapter extends CursorAdapter {
                 String selection=object.column.Column_ID+"=?";
                 String [] selectionArgs={id};
                 int id=context.getContentResolver().update(object.column.CONTENT_URI,values,selection,selectionArgs);
+               if(context instanceof MainActivity){
+                   ((MainActivity) context).display();
+               }
+
                 //TODO 1:solve the refreshing part
             }
         });

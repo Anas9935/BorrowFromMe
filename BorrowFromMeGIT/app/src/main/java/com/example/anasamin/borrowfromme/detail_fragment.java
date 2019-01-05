@@ -19,6 +19,7 @@ import com.example.anasamin.borrowfromme.data.object;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class detail_fragment extends Fragment {
     Cursor cursor;
@@ -90,7 +91,7 @@ return root;
     }
     private String getTime(int unix){
         Date d=new Date(unix*1000L);
-        return new SimpleDateFormat("dd/MMM/yyyy").format(d);
+        return new SimpleDateFormat("dd/MMM/yyyy",Locale.US).format(d);
     }
     public void setCursor(Cursor c,Context con){
         this.cursor=c;

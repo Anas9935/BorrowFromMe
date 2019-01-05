@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity   {
         });
 
         display();
+        madapter.notifyDataSetChanged();
         }
-
 
         public void display(){
             String[] projections={object.column.Column_ID, object.column.FROM, object.column.TO, object.column.AMOUNT, object.column.TIME, object.column.STATUS,object.column.TIMEPAID};
@@ -92,19 +92,20 @@ public class MainActivity extends AppCompatActivity   {
             ListView lv=(ListView)findViewById(R.id.lvXML);
             madapter=new objectCursorAdapter(this,cursor);
             lv.setAdapter(madapter);
-            madapter.notifyDataSetChanged();
         }
     @Override
     protected void onStart() {
 
         super.onStart();
         display();
+        madapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         display();
+        madapter.notifyDataSetChanged();
     }
 
     @Override

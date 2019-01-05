@@ -38,6 +38,26 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="10dp"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:visibility="invisible"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/warning"
+        android:textColor="@color/RedLink"
+        android:textSize="12sp"
+        android:text="This field can't be empty"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
         <TextView
@@ -65,6 +85,24 @@
             android:layout_marginLeft="16dp"
             android:background="@drawable/shape"
             />
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="10dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/warning2"
+            android:textColor="@color/RedLink"
+            android:textSize="12sp"
+            android:text="This field can't be empty"
+            />
     </LinearLayout>
 </LinearLayout>

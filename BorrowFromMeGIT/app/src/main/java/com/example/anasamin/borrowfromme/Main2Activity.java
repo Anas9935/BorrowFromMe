@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,6 @@ public class Main2Activity extends AppCompatActivity {
     EditText frm;
   //  TextView to;
     EditText amt;
-    String borrowto;
     TextView borrow;
     String name;
     int opt;
@@ -47,39 +47,63 @@ public class Main2Activity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.save,menu);
         return true;
     }
-public void saveindatabase(){
-
+    public void saveindatabase(){
+TextView tvwar=(TextView)findViewById(R.id.warning);
     frm=(EditText)findViewById(R.id.edit1);
-  //  to=(TextView)findViewById(R.id.edit2);
     amt=(EditText)findViewById(R.id.amount);
-    int amot=Integer.parseInt(amt.getText().toString());
-    if(TextUtils.isEmpty(frm.getText().toString())){
-        //TODO Tommorrow to check for empty editviews
+    TextView tvwar2=(TextView)findViewById(R.id.warning2);
+    if(TextUtils.isEmpty(frm.getText().toString())){                                        //for checking empty text view
+        frm.setBackground(getDrawable(R.drawable.shape_red));
+        tvwar.setVisibility(View.VISIBLE);
+        tvwar2.setVisibility(View.INVISIBLE);
+        frm.requestFocus();
     }
-    int status=0;
-    int time_paid=0;
-    Long tsLong = System.currentTimeMillis()/1000L;
-    long time=tsLong;
-    ContentValues values=new ContentValues();
-    if(opt==1){
-        values.put(object.column.FROM,frm.getText().toString().trim());
-        values.put(object.column.TO,name);
+    else if(TextUtils.isEmpty(amt.getText().toString())){                                        //for checking empty text view
+        amt.setBackground(getDrawable(R.drawable.shape_red));
+        tvwar2.setVisibility(View.VISIBLE);
+        tvwar.setVisibility(View.INVISIBLE);
+        amt.requestFocus();
     }
-    else if(opt==2){
-        values.put(object.column.FROM,name);
-        values.put(object.column.TO,frm.getText().toString().trim());
-    }
-
-    values.put(object.column.AMOUNT,amot);
-    values.put(object.column.TIME,time);
-    values.put(object.column.STATUS,status);
-    values.put(object.column.TIMEPAID,time_paid);
-    Uri muri=getContentResolver().insert(object.column.CONTENT_URI,values);
-    if(muri==null){
-        Log.e("LOGTAG://Main2Activity", "saveindatabase: Failed");
+    else if(TextUtils.isEmpty(frm.getText().toString())&&TextUtils.isEmpty(amt.getText().toString())){       //for checking both the text views
+        frm.setBackground(getDrawable(R.drawable.shape_red));
+        tvwar.setVisibility(View.VISIBLE);
+        amt.setBackground(getDrawable(R.drawable.shape_red));
+        tvwar2.setVisibility(View.VISIBLE);
+        frm.requestFocus();
     }
     else{
-        Toast.makeText(Main2Activity.this,"Saved",Toast.LENGTH_SHORT).show();
+        tvwar.setVisibility(View.INVISIBLE);
+        tvwar2.setVisibility(View.INVISIBLE);
+//       TODO  Start from here: test on the device
+
+        int amot=Integer.parseInt(amt.getText().toString());
+        int status=0;
+        int time_paid=0;
+        Long tsLong = System.currentTimeMillis()/1000L;
+        long time=tsLong;
+        ContentValues values=new ContentValues();
+        if(opt==1){
+            values.put(object.column.FROM,frm.getText().toString().trim());
+            values.put(object.column.TO,name);
+        }
+        else if(opt==2){
+            values.put(object.column.FROM,name);
+            values.put(object.column.TO,frm.getText().toString().trim());
+        }
+
+        values.put(object.column.AMOUNT,amot);
+        values.put(object.column.TIME,time);
+        values.put(object.column.STATUS,status);
+        values.put(object.column.TIMEPAID,time_paid);
+        Uri muri=getContentResolver().insert(object.column.CONTENT_URI,values);
+        if(muri==null){
+            Log.e("LOGTAG://Main2Activity", "saveindatabase: Failed");
+        }
+        else{
+            Toast.makeText(Main2Activity.this,"Saved",Toast.LENGTH_SHORT).show();
+        }
+
+        finish();
     }
 
     }
@@ -88,7 +112,6 @@ public void saveindatabase(){
         switch (item.getItemId()){
             case R.id.action_save:{
                 saveindatabase();
-                finish();
                 return true;
             }
         }

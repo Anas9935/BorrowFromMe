@@ -96,7 +96,7 @@ public class History extends AppCompatActivity {
         String selection=object.column.STATUS+"=?";
         String[] selectionArgs={"1"};
         int id=getContentResolver().delete(object.column.CONTENT_URI,selection,selectionArgs);
-
+        display();
     }
 
     @Override
