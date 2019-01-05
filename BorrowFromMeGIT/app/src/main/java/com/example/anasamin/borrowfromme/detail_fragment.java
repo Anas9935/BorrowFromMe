@@ -1,5 +1,6 @@
 package com.example.anasamin.borrowfromme;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class detail_fragment extends Fragment {
     TextView date;
     FrameLayout fml;
     Boolean fr;
+    Context mContext;
     public detail_fragment(){}
 
     @Nullable
@@ -77,10 +79,10 @@ public class detail_fragment extends Fragment {
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    fm2.beginTransaction().remove(frag).commit();
-                    frame.setVisibility(View.INVISIBLE);
-                    fml.setVisibility(View.INVISIBLE);
-                    fr=false;
+                if(mContext instanceof History){
+                    ((History) mContext).closeFrag();
+                }
+
             }
         });
 
@@ -90,8 +92,9 @@ return root;
         Date d=new Date(unix*1000L);
         return new SimpleDateFormat("dd/MMM/yyyy").format(d);
     }
-    public void setCursor(Cursor c){
+    public void setCursor(Cursor c,Context con){
         this.cursor=c;
+        this.mContext=con;
     }
     public void getFm(FragmentManager fm,Fragment fragment){
         this.fm2=fm;

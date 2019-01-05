@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.example.anasamin.borrowfromme.data.object;
+
+import java.util.Objects;
 
 public class History extends AppCompatActivity {
     HistoryCursorAdapter madapter;
@@ -25,19 +29,29 @@ public class History extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         setTitle("History");
         display();
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         fml=(FrameLayout)findViewById(R.id.overlayouthistory);
         fml.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isFragopen=false;
-                fm.beginTransaction().remove(frag).commit();
-                fl.setVisibility(View.INVISIBLE);
-                fml.setVisibility(View.INVISIBLE);
+                closeFrag();
             }
         });
-
+        if(isFragopen)
+        fl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
     void display(){
         String[] projections={object.column.Column_ID, object.column.FROM, object.column.TO, object.column.AMOUNT, object.column.TIME, object.column.STATUS,object.column.TIMEPAID};
         String sortOrder=object.column.TIME+" DESC";
@@ -57,11 +71,18 @@ public class History extends AppCompatActivity {
                 frag=new detail_fragment();
                 fl=(FrameLayout)findViewById(R.id.detailed_rootxml);
                 fl.setVisibility(View.VISIBLE);
-                frag.setCursor(madapter.getCursor());
+                frag.setCursor(madapter.getCursor(),History.this);
                 fm=getSupportFragmentManager();
                 fm.beginTransaction().add(R.id.detailed_rootxml,frag).commit();
+
+                TranslateAnimation anim=new TranslateAnimation(0,0,fml.getHeight()/2,0);
+                anim.setDuration(500L);
+                fl.startAnimation(anim);
+
                 frag.getFm(fm,frag);
                 frag.setfl(fl,fml,isFragopen);
+
+                isFragopen=frag.fr;
             }
         });
     }
@@ -94,10 +115,16 @@ public class History extends AppCompatActivity {
         if(!isFragopen){
             super.onBackPressed();
         }else{
-            isFragopen=false;
-            fm.beginTransaction().remove(frag).commit();
-            fl.setVisibility(View.INVISIBLE);
-            fml.setVisibility(View.INVISIBLE);
+            closeFrag();
         }
+    }
+    public void closeFrag(){
+        TranslateAnimation anim=new TranslateAnimation(0,0,0,fl.getHeight());
+        anim.setDuration(500L);
+        fl.startAnimation(anim);
+        isFragopen=false;
+        fm.beginTransaction().remove(frag).commit();
+        fl.setVisibility(View.INVISIBLE);
+        fml.setVisibility(View.INVISIBLE);
     }
 }

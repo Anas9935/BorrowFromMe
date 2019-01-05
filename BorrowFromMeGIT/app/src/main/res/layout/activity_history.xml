@@ -20,18 +20,21 @@
         android:layout_height="match_parent"
         android:background="@color/translucent"
         android:visibility="invisible"
+        android:animateLayoutChanges="true"
         android:id="@+id/overlayouthistory"
         >
 
-    </FrameLayout>
+        </FrameLayout>
     <FrameLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/detailed_rootxml"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center_horizontal|bottom"
         android:background="@drawable/shape"
+        android:animateLayoutChanges="true"
         android:elevation="10dp"
         android:visibility="invisible"
         >
     </FrameLayout>
+
 </FrameLayout>
