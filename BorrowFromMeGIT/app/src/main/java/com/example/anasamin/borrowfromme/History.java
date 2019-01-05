@@ -15,6 +15,10 @@ import com.example.anasamin.borrowfromme.data.object;
 
 public class History extends AppCompatActivity {
     HistoryCursorAdapter madapter;
+    FragmentManager fm;
+    FrameLayout fml,fl;
+    detail_fragment frag;
+    Boolean isFragopen=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +26,16 @@ public class History extends AppCompatActivity {
         setTitle("History");
         display();
 
+        fml=(FrameLayout)findViewById(R.id.overlayouthistory);
+        fml.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isFragopen=false;
+                fm.beginTransaction().remove(frag).commit();
+                fl.setVisibility(View.INVISIBLE);
+                fml.setVisibility(View.INVISIBLE);
+            }
+        });
 
     }
     void display(){
@@ -29,6 +43,8 @@ public class History extends AppCompatActivity {
         String sortOrder=object.column.TIME+" DESC";
         Cursor cursor=getContentResolver().query(object.column.CONTENT_URI,projections,null,null,sortOrder);
         ListView lv=(ListView)findViewById(R.id.lv2XML);
+        fml=(FrameLayout)findViewById(R.id.overlayouthistory);
+
         madapter=new HistoryCursorAdapter(this,cursor);
         lv.setAdapter(madapter);
         madapter.notifyDataSetChanged();
@@ -36,14 +52,16 @@ public class History extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                detail_fragment frag=new detail_fragment();
-                FrameLayout fl=(FrameLayout)findViewById(R.id.detailed_rootxml);
+                isFragopen=true;
+                fml.setVisibility(View.VISIBLE);
+                frag=new detail_fragment();
+                fl=(FrameLayout)findViewById(R.id.detailed_rootxml);
                 fl.setVisibility(View.VISIBLE);
                 frag.setCursor(madapter.getCursor());
-                FragmentManager fm=getSupportFragmentManager();
+                fm=getSupportFragmentManager();
                 fm.beginTransaction().add(R.id.detailed_rootxml,frag).commit();
                 frag.getFm(fm,frag);
-                frag.setfl(fl);
+                frag.setfl(fl,fml,isFragopen);
             }
         });
     }
@@ -71,4 +89,15 @@ public class History extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if(!isFragopen){
+            super.onBackPressed();
+        }else{
+            isFragopen=false;
+            fm.beginTransaction().remove(frag).commit();
+            fl.setVisibility(View.INVISIBLE);
+            fml.setVisibility(View.INVISIBLE);
+        }
+    }
 }

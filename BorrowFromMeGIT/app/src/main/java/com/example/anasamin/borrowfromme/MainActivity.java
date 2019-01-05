@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity   {
     FloatingActionButton bun2;
     objectCursorAdapter madapter;
     String name="Anas Amin";
+    FrameLayout flover;
 
     LinearLayout l1;
     LinearLayout l2;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity   {
 
         l1=(LinearLayout)findViewById(R.id.layoutFAB1);
         l2=(LinearLayout)findViewById(R.id.layoutFAB2);
-
+        flover=(FrameLayout)findViewById(R.id.overlayout);
         final Intent intent=new Intent(MainActivity.this,Main2Activity.class);
         intent.putExtra("NAME",name);
 
@@ -46,9 +48,11 @@ public class MainActivity extends AppCompatActivity   {
             @Override
             public void onClick(View v) {
                 if(!isFABopen){
+                    flover.setVisibility(View.VISIBLE);
                     showFABmenu();
                 }
-                else { closeFABmenu(); }
+                else {
+                    closeFABmenu(); }
             }
         });
         bun1.setOnClickListener(new View.OnClickListener() {            //for giving
@@ -65,6 +69,14 @@ public class MainActivity extends AppCompatActivity   {
                 closeFABmenu();
                 intent.putExtra("OPTION",2);
                 startActivity(intent);
+            }
+        });
+
+        flover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                closeFABmenu();
             }
         });
 
@@ -120,9 +132,11 @@ public class MainActivity extends AppCompatActivity   {
         OvershootInterpolator interpolator=new OvershootInterpolator(10.0F);
         ViewCompat.animate(button).rotation(135.0F).withLayer().setDuration(300).setInterpolator(interpolator).start();
        // button.setImageDrawable(getResources().getDrawable(R.drawable.cross));
+
     }
     public void closeFABmenu(){
         isFABopen=false;
+        flover.setVisibility(View.INVISIBLE);
         l1.animate().translationY(0);
         l1.animate().translationY(0);
         l1.setVisibility(View.INVISIBLE);

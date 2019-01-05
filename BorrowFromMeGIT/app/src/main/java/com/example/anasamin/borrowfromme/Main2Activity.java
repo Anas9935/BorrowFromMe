@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,6 +53,9 @@ public void saveindatabase(){
   //  to=(TextView)findViewById(R.id.edit2);
     amt=(EditText)findViewById(R.id.amount);
     int amot=Integer.parseInt(amt.getText().toString());
+    if(TextUtils.isEmpty(frm.getText().toString())){
+        //TODO Tommorrow to check for empty editviews
+    }
     int status=0;
     int time_paid=0;
     Long tsLong = System.currentTimeMillis()/1000L;

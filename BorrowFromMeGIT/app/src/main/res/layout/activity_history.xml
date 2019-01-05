@@ -9,10 +9,21 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:id="@+id/lv2XML"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_height="match_parent"
         tools:context=".History">
 
     </ListView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/translucent"
+        android:visibility="invisible"
+        android:id="@+id/overlayouthistory"
+        >
+
+    </FrameLayout>
     <FrameLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"

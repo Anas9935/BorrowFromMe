@@ -25,6 +25,8 @@ public class detail_fragment extends Fragment {
     Fragment frag;
     FrameLayout frame;
     TextView date;
+    FrameLayout fml;
+    Boolean fr;
     public detail_fragment(){}
 
     @Nullable
@@ -77,6 +79,8 @@ public class detail_fragment extends Fragment {
             public void onClick(View v) {
                     fm2.beginTransaction().remove(frag).commit();
                     frame.setVisibility(View.INVISIBLE);
+                    fml.setVisibility(View.INVISIBLE);
+                    fr=false;
             }
         });
 
@@ -93,8 +97,10 @@ return root;
         this.fm2=fm;
         this.frag=fragment;
     }
-    public void setfl(FrameLayout fl){
+    public void setfl(FrameLayout fl,FrameLayout fl2,boolean fragap){
         this.frame=fl;
+        this.fr=fragap;
+        this.fml=fl2;
     }
 
     }
