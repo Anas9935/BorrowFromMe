@@ -22,7 +22,6 @@
             android:name=".data.dataprovider"
             android:authorities="com.android.anasamin.borrowfromme"
             android:exported="false" />
-
         <activity android:name=".History"></activity>
     </application>
 

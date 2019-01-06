@@ -3,4 +3,5 @@
     <string name="paid"><u>PAY</u></string>
     <string name="from">Borrowed From -</string>
     <string name="to">Borrow To -</string>
+    <string name="user_data"><u>USER INFO</u></string>
 </resources>

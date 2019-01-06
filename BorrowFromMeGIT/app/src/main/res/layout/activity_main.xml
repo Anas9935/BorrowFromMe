@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/shape_borderless"
+    android:background="#fff"
     android:orientation="vertical"
-
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -13,7 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lvXML"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:dividerHeight="5dp"
         >
 
     </ListView>
@@ -51,9 +53,11 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="bottom|end"
-            android:src="@drawable/receiving"
+            android:src="@mipmap/ic_receiving"
             android:id="@+id/FAB1"
+            app:maxImageSize="40dp"
             app:fabCustomSize="40dp"
+            android:scaleType="fitCenter"
             android:layout_marginRight="10dp"
             />
 
@@ -82,24 +86,74 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_marginRight="10dp"
-            android:layout_gravity="bottom|end"
+            android:scaleType="fitCenter"
             app:fabCustomSize="40dp"
-            android:src="@drawable/giving"
+            android:layout_gravity="bottom|end"
+            app:maxImageSize="40dp"
+            android:src="@mipmap/ic_giving"
             android:id="@+id/FAB2"
             />
 
     </LinearLayout>
 
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/translucent"
+    android:id="@+id/root"
+    android:visibility="invisible"
 
+    >
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@drawable/shape"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:text="@string/user_data"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/tev"
+            android:layout_width="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
+            android:hint="Your Name:-"
+            android:paddingStart="16dp"
+            android:textColor="#000"
+            />
 
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE"
+            android:layout_marginTop="16dp"
+            />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
     <android.support.design.widget.FloatingActionButton
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/plus3"
+        android:src="@drawable/ic_add_black_24dp"
         android:id="@+id/FAB"
+        android:scaleType="center"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"/>
-
 
 </FrameLayout>
